@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "package": "com.github.FlyBird.MobCage.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "target": "DEFAULT",
+  "minVersion": "0.8.3",
+  "mixins": [
+    "EntityHorseMixin",
+    "ItemBlockMixin",
+    "ItemRendererMixin",
+    "NetClientHandlerMixin",
+    "RenderBlocksMixin",
+    "RenderItemMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"schemaVersion": 1,
+	"id": "mobcage",
+	"version": "${version}",
+	"depends": {
+		"fishmodloader": ">=3.2.1"
+	},
+	"environment": "*",
+	"name": "MobCage",
+	"description": "",
+	"authors": ["vladmarica","FlyBird"],
+	"entrypoints": {
+		"main": ["com.github.FlyBird.MobCage.HelloFML"]
+	},
+	"mixins": [
+		"mobcage.mixins.json"
+	],
+	"custom": {
+		"loom:injected_interfaces": {
+			"net/minecraft/RenderBlocks": [
+				"com/github/FlyBird/MobCage/api/IRenderBlock"
+			]
+		}
+	},
+	"accessWidener": "MobCage.accesswidener"
+}

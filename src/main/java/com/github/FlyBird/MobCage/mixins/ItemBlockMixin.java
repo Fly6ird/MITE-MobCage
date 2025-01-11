@@ -50,7 +50,7 @@ public abstract class ItemBlockMixin {
             RaycastCollision rc = player.getSelectedObject(partial_tick, false);
             ItemStack playerHeldItemStack = player.getHeldItemStack();
             if (rc != null) {
-                if (rc.isEntity() && !playerHeldItemStack.hasTagCompound()) {
+                if (rc.isEntity() ) {
                     EntityLivingBase entity = rc.getEntityHit().getAsEntityLivingBase();
                     if (entity.worldObj instanceof WorldServer && entity.isEntityAlive() && entity instanceof EntityAnimal) {
                         entity.setDead();
@@ -82,8 +82,12 @@ public abstract class ItemBlockMixin {
                         cir.setReturnValue(true);
                     }
                     cir.setReturnValue(true);
+                }else if(rc.isBlock()){
+                    player.tryPlaceHeldItemAsBlock(rc, Block.getBlock(Blocks.blockCage.blockID));
+                    cir.setReturnValue(true);
                 }
             }
+
         }
     }
 }

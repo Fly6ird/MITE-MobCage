@@ -51,6 +51,31 @@ public class BlockCage extends BlockContainer
 		if (tile != null && world instanceof WorldServer&&world.getBlockMetadata(x,y,z)!=15) {
 			tile.handleBreaking(x, y, z); // 处理笼子内生物的逻辑
 		}
+		super.breakBlock(world, x, y, z, blockID, fortune);
+	}
+
+	public boolean onBlockPlacedMITE(World world, int x, int y, int z, int metadata, Entity placer, boolean test_only) {
+		if (!test_only && placer instanceof EntityLivingBase) {
+			ItemStack item_stack = placer.getAsEntityLivingBase().getHeldItemStack();
+			if (item_stack.hasDisplayName()) {
+				TileEntity tile_entity = world.getBlockTileEntity(x, y, z);
+				if (tile_entity != null) {
+					tile_entity.setCustomInvName(item_stack.getDisplayName());
+				}
+			}
+			if(item_stack.hasTagCompound()) {
+				TileEntityCage tile = (TileEntityCage) world.getBlockTileEntity(x, y, z);
+				if (tile != null) {
+					tile.entityID = item_stack.getTagCompound().getString("EntityString");
+					tile.hasEntity = item_stack.getTagCompound().getBoolean("HasEntity");
+					tile.entityHealth = item_stack.getTagCompound().getFloat("EntityHealth");
+					tile.entityData = item_stack.getTagCompound().getCompoundTag("EntityData");
+					world.markBlockForUpdate(x, y, z);
+				}
+			}
+		}
+
+		return true;
 	}
 
 

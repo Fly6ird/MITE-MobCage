@@ -37,27 +37,31 @@ public class RenderBlocksMixin implements IRenderBlock {
 
     if (renderType == BlockCage.blockCageRenderType) {
       if(renderItemType==EnumItemRenderType.INVENTORY) {
-        GL11.glDisable(GL11.GL_LIGHTING);
+        //GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glTranslatef(0F, -0.1F, 0F);
         //GL11.glEnable(GL11.GL_LIGHTING);
         cage.renderFrame(0, 0, 0, 0, true);
         GL11.glTranslatef(0F, 0.1F, 0F);
+        GL11.glEnable(32826);
       }
       if(renderItemType==EnumItemRenderType.ENTITY){
         GL11.glScalef(0.5F, 0.5F, 0.5F);
         GL11.glTranslatef(-0.5F, -0.4F, -0.5F);
         cage.renderFrame(0, 0, 0, 0, false);
+        GL11.glEnable(32826);
       }
       if(renderItemType==EnumItemRenderType.HAND)
       {
         GL11.glTranslatef(1F, 0.2F, 1F);
         GL11.glRotatef(180F, 0F, 1F, 0F);
         cage.renderFrame(0, 0, 0, 0, false);
+        GL11.glEnable(32826);
       }
       if (itemStack.hasTagCompound()) {
         NBTTagCompound tag = itemStack.getTagCompound();
         EntityLiving entity = cage.getEntity(tag.getString("EntityString"), tag.getCompoundTag("EntityData"));
         cage.renderEntity(entity, 0, 0, 0);
+        GL11.glEnable(32826);
       }
     }
   }
